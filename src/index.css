@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --classicBlue: 10 24 41;
+    --gold: 191 161 129;
+    --turquoise: 23 133 130;
+  }
+}
+
+@layer components {
+  .svg {
+    @apply w-5 h-5 stroke-2 pointer-events-none;
+  }
+}
+
+:root {
+  --gray-950: 3 7 18;
+  --gray-800: 31 41 55;
+  --gray-700: 55 65 81;
+}
+
+::-webkit-scrollbar {
+  appearance: none;
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--gray-700));
+  border-radius: 6px;
+}
+
+body {
+  background-color: #fff;
+}
+.dark body {
+  background-color: rgb(var(--gray-950));
+}
+
+.active {
+  color: rgb(var(--gold));
+}
