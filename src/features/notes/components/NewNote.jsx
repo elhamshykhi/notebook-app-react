@@ -1,12 +1,17 @@
-import { HiOutlineFolder, HiOutlineHeart, HiOutlineTag } from "react-icons/hi2";
+import {
+  HiOutlineArrowUturnLeft,
+  HiOutlineFolder,
+  HiOutlineHeart,
+  HiOutlineTag,
+} from "react-icons/hi2";
 import { IoColorFillOutline } from "react-icons/io5";
 import { MdOutlineSaveAlt } from "react-icons/md";
 
-import NotesHeader from "./NotesHeader";
 import { noteColors } from "../../../util/colors";
 import Button from "../../../ui/Button";
 import { useState } from "react";
 import { useNotes } from "../context/NotesProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function NewNote() {
   const [isOpenNoteOption, setIsOpenNoteOption] = useState(false);
@@ -17,6 +22,7 @@ export default function NewNote() {
     favorite: false,
   });
   const { saveNote } = useNotes();
+  const navigate = useNavigate();
 
   const handleOpenNoteOptions = () => {
     setIsOpenNoteOption((prev) => !prev);
@@ -37,11 +43,21 @@ export default function NewNote() {
       color: "",
       favorite: false,
     });
+    navigate("/notes", { replace: true });
   };
 
   return (
     <div className="p-4 h-full">
-      <NotesHeader heading="new note">
+      {/* header */}
+      <div className="flex items-center justify-between gap-x-2 mb-2">
+        <Button handleClick={() => navigate(-1)}>
+          <HiOutlineArrowUturnLeft className="svg stroke-turquoise" />
+        </Button>
+        
+        <h2 className="capitalize font-bold text-turquoise text-sm xs:text-base lg:text-lg">
+          new note
+        </h2>
+
         <div className="flex items-center gap-x-1 xs:gap-x-2">
           <div className="relative">
             <Button handleClick={handleOpenNoteOptions}>
@@ -83,7 +99,7 @@ export default function NewNote() {
             <MdOutlineSaveAlt className="w-5 h-5" />
           </Button>
         </div>
-      </NotesHeader>
+      </div>
 
       <div className="min-h-[calc(100vh_-_172px)] md:min-h-fit md:h-full md:max-h-[calc(100%_-_44px)] flex flex-col relative">
         <div className="border-b border-slate-800">

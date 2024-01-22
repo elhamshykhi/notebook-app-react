@@ -21,6 +21,12 @@ function NotesReducer(state, { type, payload }) {
         loading: false,
         currentNote: payload,
       };
+    case "deleteNote":
+      return {
+        ...state,
+        loading: false,
+        currentNote: {},
+      };
     case "reject":
       return { notes: [], loading: false, currentNote: {} };
     default:
@@ -85,6 +91,16 @@ export default function NotesProvider({ children }) {
     }
   }
 
+  async function deleteNote(id) {
+    dispatch({ type: "pending" });
+    try {
+      await axios.delete(`http://localhost:5000/notes/${id}`);
+      dispatch({ type: "deleteNote" });
+    } catch (error) {
+      console.log(error.message);
+      dispatch({ type: "reject" });
+    }
+  }
   return (
     <NotesContext.Provider
       value={{
@@ -95,6 +111,7 @@ export default function NotesProvider({ children }) {
         getNote,
         saveNote,
         editNote,
+        deleteNote,
       }}
     >
       {children}

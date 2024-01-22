@@ -1,26 +1,29 @@
 import { Link, NavLink } from "react-router-dom";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { useNotes } from "../context/NotesProvider";
-import NotesHeader from "./NotesHeader";
 import { useEffect } from "react";
 
 function NotesList() {
   const { notes, loading, getNotes } = useNotes();
-
+  
   useEffect(() => {
     getNotes();
   }, []);
 
   return (
     <div className="p-4 h-full">
-      <NotesHeader heading="notes list">
+      <div className="flex items-center justify-between gap-x-2 mb-2">
+        <h2 className="capitalize font-bold text-turquoise text-sm xs:text-base lg:text-lg">
+          notes list
+        </h2>
+
         <Link
           to="add"
           className="text-classicBlue px-3 py-1 rounded-full text-[10px] md:text-[11px] capitalize font-bold bg-turquoise text-center"
         >
           add new note
         </Link>
-      </NotesHeader>
+      </div>
 
       <div className="min-h-[calc(100vh_-_172px)] md:min-h-fit md:h-full md:max-h-[calc(100%_-_36px)]">
         <div className="max-h-full overflow-auto flex flex-wrap gap-2">
