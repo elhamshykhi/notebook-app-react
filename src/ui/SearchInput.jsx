@@ -1,6 +1,6 @@
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
-function SearchInput() {
+export default function SearchInput() {
   return (
     <form className="bg-slate-800 flex items-center gap-x-2 rounded-full px-2">
       <input
@@ -9,7 +9,7 @@ function SearchInput() {
         id="search"
         autoComplete="off"
         placeholder="Search ..."
-        className="py-2 pl-2 text-sm text-slate-200 flex-1 bg-transparent focus:outline-none placeholder:text-slate-500"
+        className="py-2 pl-2 text-sm text-slate-200 flex-1 bg-transparent focus:outline-none placeholder:text-slate-500 placeholder:capitalize"
       />
 
       <button type="submit">
@@ -18,5 +18,3 @@ function SearchInput() {
     </form>
   );
 }
-
-export default SearchInput;

@@ -53,7 +53,7 @@ export default function NewNote() {
         <Button handleClick={() => navigate(-1)}>
           <HiOutlineArrowUturnLeft className="svg stroke-turquoise" />
         </Button>
-        
+
         <h2 className="capitalize font-bold text-turquoise text-sm xs:text-base lg:text-lg">
           new note
         </h2>

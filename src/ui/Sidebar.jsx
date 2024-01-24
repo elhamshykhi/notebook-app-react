@@ -28,7 +28,7 @@ const sidebarIcons = [
     children: <PiNotebook className="svg" />,
   },
   {
-    title: "checklist",
+    title: "tasks",
     children: <LuListTodo className="svg" />,
   },
   {

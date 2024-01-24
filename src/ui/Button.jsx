@@ -3,7 +3,7 @@ function Button({ children, handleClick }) {
     <button
       type="button"
       onClick={handleClick}
-      className="text-turquoise w-7 h-7 bg-gray-800 flex items-center justify-center"
+      className="text-turquoise w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center"
     >
       {children}
     </button>

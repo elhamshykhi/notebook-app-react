@@ -29,7 +29,7 @@ function NotesList() {
         <div className="max-h-full overflow-auto flex flex-wrap gap-2">
           {!notes.length ? (
             <p className="w-full capitalize text-center text-slate-600 text-sm tracking-widest">
-              there is note any note here!
+              there is not any note here!
             </p>
           ) : loading ? (
             <p className="p-4 capitalize animate-pulse text-gray-600">

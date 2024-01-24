@@ -1,44 +1,61 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const TrashContext = createContext();
 
+const initialState = { trash: [], loading: false };
+
+function trashReducer(state, { type, payload }) {
+  switch (type) {
+    case "pending":
+      return { ...state, loading: true };
+    case "fetchTrash":
+      return { ...state, loading: false, trash: payload };
+    case "deleteTrash":
+      return {
+        ...state,
+        loading: false,
+        trash: state.trash.filter((item) => item.id !== payload.id),
+      };
+    case "reject":
+      return { trash: [], loading: false };
+    default:
+      return state;
+  }
+}
+
 export default function TrashProvider({ children }) {
-  const [trash, setTrash] = useState([]);
-  const [loading, setLoading] = useState([]);
+  const [{ trash, loading }, dispatch] = useReducer(trashReducer, initialState);
 
   async function getTrash() {
-    setLoading(true);
+    dispatch({ type: "pending" });
     try {
       const { data } = await axios.get("http://localhost:5000/trash");
-      setTrash(data);
+      dispatch({ type: "fetchTrash", payload: data });
     } catch (error) {
       console.log(error.message);
-    } finally {
-      setLoading(false);
+      dispatch({ type: "reject" });
     }
   }
 
   async function addToTrash(item) {
-    setLoading(true);
+    dispatch({ type: "pending" });
     try {
       await axios.post("http://localhost:5000/trash", item);
     } catch (error) {
       console.log(error.message);
-    } finally {
-      setLoading(false);
+      dispatch({ type: "reject" });
     }
   }
 
   async function deleteTrash(id) {
-    setLoading(true);
+    dispatch({ type: "pending" });
     try {
       const { data } = await axios.delete(`http://localhost:5000/trash/${id}`);
-      setTrash(trash.filter((item) => item.id !== data.id));
+      dispatch({ type: "deleteTrash", payload: data });
     } catch (error) {
       console.log(error.message);
-    } finally {
-      setLoading(false);
+      dispatch({ type: "reject" });
     }
   }
 
