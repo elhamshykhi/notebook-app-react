@@ -101,6 +101,7 @@ export default function NotesProvider({ children }) {
       dispatch({ type: "reject" });
     }
   }
+  
   return (
     <NotesContext.Provider
       value={{

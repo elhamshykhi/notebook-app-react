@@ -2,16 +2,17 @@ import { Link, NavLink } from "react-router-dom";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { useNotes } from "../context/NotesProvider";
 import { useEffect } from "react";
+import { bgColor } from "../../../util/colors";
 
 function NotesList() {
   const { notes, loading, getNotes } = useNotes();
-  
+
   useEffect(() => {
     getNotes();
   }, []);
 
   return (
-    <div className="p-4 h-full">
+    <div className="p-4 h-full bg-classicBlue rounded-xl">
       <div className="flex items-center justify-between gap-x-2 mb-2">
         <h2 className="capitalize font-bold text-turquoise text-sm xs:text-base lg:text-lg">
           notes list
@@ -25,7 +26,7 @@ function NotesList() {
         </Link>
       </div>
 
-      <div className="min-h-[calc(100vh_-_172px)] md:min-h-fit md:h-full md:max-h-[calc(100%_-_36px)]">
+      <div className="min-h-[calc(100vh_-_160px)] md:min-h-fit md:h-full md:max-h-[calc(100%_-_36px)]">
         <div className="max-h-full overflow-auto flex flex-wrap gap-2">
           {!notes.length ? (
             <p className="w-full capitalize text-center text-slate-600 text-sm tracking-widest">
@@ -40,7 +41,9 @@ function NotesList() {
               <NavLink
                 to={`${note.id}`}
                 key={note.id}
-                className={`min-h-32 max-h-48 bg-gray-800 flex-grow min-w-40 max-w-full min-[450px]:max-w-[50%] lg:max-w-[33.3333%] rounded-xl p-2 xl:p-4 flex flex-col`}
+                className={`min-h-32 max-h-48 ${
+                  note.color ? bgColor(note.color) : "bg-slate-800"
+                } flex-grow min-w-40 max-w-full min-[450px]:max-w-[50%] lg:max-w-[33.3333%] rounded-xl p-2 xl:p-4 flex flex-col`}
               >
                 <div className="mb-2">
                   <div className="flex items-center justify-between">

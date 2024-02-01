@@ -3,24 +3,5 @@
   "folders": [],
   "tags": [],
   "notes": [],
-  "tasks": [
-    {
-      "id": "9dfb",
-      "title": "cc",
-      "completed": false,
-      "createdAt": "2024-01-24T18:42:04.739Z"
-    },
-    {
-      "id": "e8fb",
-      "title": "ff",
-      "completed": true,
-      "createdAt": "2024-01-24T19:10:36.557Z"
-    },
-    {
-      "id": "b4a4",
-      "title": "ee",
-      "completed": false,
-      "createdAt": "2024-01-24T19:10:37.549Z"
-    }
-  ]
+  "tasks": []
 }

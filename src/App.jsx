@@ -32,9 +32,10 @@ function App() {
                 <Header />
 
                 <div className="p-4 md:px-0">
-                  <div className="bg-classicBlue h-full min-h-[calc(100vh_-_96px)] rounded-xl md:h-[calc(100vh_-_104px)] md:min-h-[calc(100vh_-_104px)]">
+                  <div className="h-full min-h-[calc(100vh_-_96px)] md:h-[calc(100vh_-_104px)] md:min-h-[calc(100vh_-_104px)]">
                     <Routes>
                       <Route path="/" element={<Home />} />
+
                       <Route path="/notes">
                         <Route index element={<NotesList />} />
                         <Route path="add" element={<NewNote />} />
